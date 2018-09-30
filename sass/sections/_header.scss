@@ -1,0 +1,53 @@
+header {
+	position: fixed;
+	width: 100%;
+	z-index: 15;
+	transition: all 0.3s;
+	.wrapper--outer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		color: white;
+		align-self: flex-start;
+	}
+	h1 {
+		display: inline-block;
+		margin: 0;
+		padding: 10px 10px;
+		font-size: 2rem;
+		transition: all 0.3s;
+		&:after {
+			content: "";
+			display: block;
+			width: 100%;
+			margin: 0 auto;
+			height: 2px;
+			background: gold;
+		}
+	}
+	button {
+		@include button;
+		border: 2px solid $accent;
+		margin-top: 0;
+	}
+}
+
+.sticky {
+	top: 0;
+	width: 100%;
+	background: $accent;
+	z-index: 10;
+	h1 {
+		font-size: 1.5rem;
+		color: black;
+		padding: 10px 0;
+		transition: all 0.3s;
+	}
+	button {
+		color: black;
+		border: 2px solid black;
+		padding: 7px 12px;
+		transition: all 0.3s;
+	}
+	transition: all 0.3s;
+}

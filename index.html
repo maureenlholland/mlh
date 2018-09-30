@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MLH</title>
+	<link rel="icon" type="image/png" href="assets/typewriter-favicon.png" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata:700|Source+Sans+Pro" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body id="body">
+	<div class="twinkling"></div>
+	<div id="uo-modal" class="modal">
+		<div id="uo-modal-inner" class="modal-inner">
+			<form id="uo-modal-form" action="">
+				<fieldset>  
+				  <legend>Stop Animation</legend>
+				  <div class="fb-container">
+				  	  <label for="animation-stop">
+				  	  	<input type="radio" id="animation-stop" name="animation" value="on">
+				  	  	<span class="select">Yes</span>
+				  	  </label>
+				  	  <label for="animation-play">
+				  		<input type="radio" id="animation-play" name="animation" value="off" checked>
+				  		<span class="select">No</span>
+				  	  </label>
+				  </div>
+				</fieldset> 
+				<fieldset>  
+				  <legend>Change <span class="uppercase">Uppercase</span> to Normal Case</legend>
+				  <div class="fb-container">
+				  	  <label for="uppercase-removed">
+				  		<input type="radio" id="uppercase-removed" name="uppercase" value="on">
+				  		<span class="select">Yes</span>
+				  	  </label>
+				  	  <label for="uppercase-allowed">
+				  		<input type="radio" id="uppercase-allowed" name="uppercase" value="off" checked>
+				  		<span class="select">No</span>
+				  	  </label>
+				  </div>
+				</fieldset> 
+				<fieldset>  
+				  <legend>Invert Theme Colours</legend>
+				  <div class="fb-container">
+				  	  <label for="invert-on">
+				  		<input type="radio" id="invert-on" name="invert" value="on">
+				  		<span class="select">Yes</span>
+				  	  </label>
+				  	  <label for="invert-off">
+				  	  	<input type="radio" id="invert-off" name="invert" value="off" checked>
+				  	  	<span class="select">No</span>
+				  	  </label>
+				  </div>
+				</fieldset> 
+				<button id="exit" class="exit">Exit User Options</button>
+				<button id="issue" class="issue">Report an issue</button>
+			</form>
+		</div> <!-- .modal-inner -->
+	</div> <!-- .modal -->
+	<header>
+		<div class="wrapper--outer">
+			<h1>Maureen L. Holland</h1>
+			<button id="user-options">User Options</button>
+		</div> <!-- .wrapper -->
+	</header>
+	<section class="featured">
+		<div class="wrapper--inner">
+			<div class="featured__content">
+				<h2>I write for Computers and Humans and Money</h2>
+				<p>I'm a full-stack developer based in Montreal, Canada.
+				I strive to write clean, modular, and accessible code every day.
+				I break things.
+				I rebuild them.
+				I'm always learning.</p>
+				<button>Work with Me</button>
+			</div> <!-- .featured__content -->
+		</div> <!-- .wrapper -->
+	</section> <!-- .featured -->
+	<section class="skills">
+		<div class="wrapper--outer">
+			<h2>Skills</h2>
+			<ul class="skills__grid">
+				<li class="grid__item">
+					<i class="fab fa-html5"></i>
+					<h3>HTML5</h3>
+				</li>
+				<li class="grid__item">
+					<i class="fab fa-css3-alt"></i>
+					<h3>CSS3</h3>
+				</li>
+				<li class="grid__item">
+					<i class="fab fa-sass"></i>
+					<h3>Sass</h3>
+				</li>
+				<li class="grid__item">
+					<i class="fab fa-gulp"></i>
+					<h3>Gulp</h3>
+				</li>
+				<li class="grid__item">
+					<i class="fab fa-github"></i>
+					<h3>Github</h3>
+				</li>
+				<li class="grid__item">
+					<i class="fab fa-git"></i>
+					<h3>Git</h3>
+				</li>
+				<li class="grid__item">
+					<i class="fab fa-php"></i>
+					<h3>PHP</h3>
+				</li>
+				<li class="grid__item">
+					<i class="fab fa-wordpress"></i>
+					<h3>WordPress</h3>
+				</li>
+				<li class="grid__item">
+					<i class="fab fa-js"></i>
+					<h3>JavaScript</h3>
+				</li>
+				<li class="grid__item">
+					<i class="fab fa-react"></i>
+					<h3>React.js</h3>
+				</li>
+				<li class="grid__item">
+					<i class="fab fa-node"></i>
+					<h3>Node.js</h3>
+				</li>
+				<li class="grid__item">
+					<i class="fab fa-vuejs"></i>
+					<h3>Vue.js</h3>
+				</li>
+			</ul> <!-- .skills__grid -->
+		</div> <!-- .wrapper -->
+	</section> <!-- .skills -->
+	<section class="projects">
+		<div class="wrapper--inner">
+			<h2>Side Projects</h2>
+			<ul class="projects__list">
+				<li class="list__item">
+					<div class="item__image">
+						<img src="" alt="">
+					</div>
+					<div class="item__content">
+						<h3>Binge Buddy</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex</p>
+					</div>
+				</li>
+				<li class="list__item">
+					<div class="item__image">
+						<img src="" alt="">
+					</div>
+					<div class="item__content">
+						<h3>Potluck Planner</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex</p>
+					</div>
+				</li> 
+			</ul> <!-- .projects__list -->
+		</div> <!-- .wrapper -->
+	</section> <!-- .projects -->
+	<footer>
+		<div class="wrapper--outer">
+			<div class="social">
+				<h2>Find me online elsewhere: </h2>
+				<ul>
+					<li><a href="">LinkedIn</a></li>
+					<li><a href="">GitHub</a></li>
+				</ul>
+			</div> <!-- .social -->
+			<p class="copyright">&copy; Maureen L. Holland 2018</p>
+		</div> <!-- .wrapper -->
+	</footer>
+	<script src="public/scripts/main.min.js"></script>
+</body>
+</html>

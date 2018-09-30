@@ -1,0 +1,35 @@
+.skills {
+	.wrapper {
+		position: relative;
+	}
+	h2 {
+		@include visually-hidden;
+	}
+}
+
+.skills__grid {
+	background: white;
+	position: relative; 
+	z-index: 5;
+	@include reset;
+	padding: 20px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.grid__item {
+	display: flex;
+	flex-direction: column-reverse;
+	text-align: center;
+	padding-bottom: 20px;
+	@include column-number(6);
+	i {
+		font-size: 4rem;
+		margin-top: 5px;
+		margin-bottom:5px;
+	}
+	h3 {
+		margin: 0;
+		padding: 7px;
+	}
+}

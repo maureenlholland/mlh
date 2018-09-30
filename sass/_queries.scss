@@ -1,0 +1,105 @@
+/* Checkerboard queries */
+@media all and (min-width: 951px) {
+	.grid__item:nth-of-type(2n):nth-child(-n+6), /* stop this pattern after first row */
+	.grid__item:nth-of-type(2n + 7) {
+		background: #eee;
+	}
+}
+@media all and (min-width: 651px) and (max-width:950px) {
+	.grid__item:nth-of-type(2n + 2):nth-child(-n+4), /* stop this pattern after first row */
+	.grid__item:nth-of-type(2n + 5):nth-child(-n+8), /* stop this pattern after second row */
+	.grid__item:nth-of-type(2n + 10) {
+		background: #eee;
+	}
+}
+@media all and (min-width: 501px) and (max-width:650px) {
+	.grid__item:nth-of-type(2n + 1) {
+		background: #eee;
+	}
+}
+@media all and (max-width: 500px) {
+	.grid__item:nth-of-type(4n),
+	.grid__item:nth-of-type(4n+1) {
+		background: #eee;
+	}
+}
+
+/* Regular queries */
+@media all and (max-width: 950px) {
+	.grid__item {
+		@include column-number(4);
+	}
+	footer {
+		.wrapper--outer {
+			flex-direction: column;
+		}
+	}
+}
+
+@media all and (max-width: 650px) {
+	header {
+		.wrapper--outer {
+			flex-direction: column-reverse;
+			padding: 0;
+		}
+		button {
+			margin-top: 0;
+			background: $accent;
+			color: black;
+			display: block;
+			width: 100%;
+		}
+	}
+	.featured__content {
+		width: 80%;
+		margin: 0 auto;
+	}
+	.grid__item {
+		@include column-number(3);
+	}
+	.grid__item:nth-of-type(9) {
+		padding-bottom: 20px;
+	}
+	.list__item {
+		display: block;
+		margin-bottom: 60px;
+	}
+	.item__image {
+		width: 100%;
+	}
+	.item__content {
+		width: 80%;
+		margin: -75px auto 0px auto;
+		clip-path: polygon(20% 0,80% 0,100% 20%,100% 100%,0 100%,0 20%);
+		h3 {
+			text-align: center;
+		}
+		p {
+			padding-right: 20px;
+		}
+	}
+	.list__item:nth-of-type(even) .item__content {
+		h3 {
+			text-align: center;
+		}
+		p {
+			padding-left: 20px;
+		}
+	}
+	.triangle {
+		display: none;
+	}
+	.social {
+		flex-direction: column;
+		padding-bottom: 20px;
+	}
+}
+
+@media all and (max-width: 500px) {
+	.grid__item {
+		@include column-number(2);
+	}
+	.grid__item:nth-of-type(10) {
+		padding-bottom: 20px;
+	}
+}

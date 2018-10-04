@@ -1,5 +1,5 @@
 {
-  "name": "mlh",
+  "name": "static-site-mailer",
   "version": "1.0.0",
   "description": "MLH build",
   "main": "gulpfile.js",
@@ -24,5 +24,9 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^3.0.0",
     "pump": "^1.0.2"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.328.0",
+    "serverless": "^1.32.0"
   }
 }

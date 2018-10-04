@@ -63,6 +63,22 @@
 			<button id="user-options">User Options</button>
 		</div> <!-- .wrapper -->
 	</header>
+	<form id="test" action="https://g260z3nzb7.execute-api.us-east-1.amazonaws.com/dev/static-site-mailer" method="POST">
+	  <label>
+	    Name
+	    <input type="text" name="name" required>
+	  </label>
+	  <label>
+	    Email
+	    <input type="email" name="reply_to" required>
+	  </label>
+	  <label>
+	    Message:
+	    <textarea name="message" required></textarea>
+	  </label>
+	  <button type="submit">Send Message</button>
+	</form>
+	<p id="js-form-response"></p>
 	<section class="featured">
 		<div class="wrapper--inner">
 			<div class="featured__content">
@@ -71,7 +87,7 @@
 				I strive to write clean, modular, and accessible code every day.
 				I break things.
 				I rebuild them.
-				I'm always learning.</p>
+				I learn.</p>
 				<button>Work with Me</button>
 			</div> <!-- .featured__content -->
 		</div> <!-- .wrapper -->

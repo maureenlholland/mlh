@@ -2,9 +2,24 @@
 	box-sizing: border-box;
 }
 
+#test {
+  position: relative;
+  z-index: 15;
+  max-width: 500px;
+  margin: 0 auto;
+  input,
+  textarea,
+  label {
+    display: block;
+    width: 100%;
+  }
+}
+
 .invert {
    filter: invert(100%);
-   background: white !important;
+   body {
+    background: white !important;
+   }
    .twinkling {
    		display: none !important;
    }
@@ -33,7 +48,7 @@
 .twinkling {
   background:transparent url('assets/twinkling.png') repeat top center;
   z-index:1;
-  animation:move-twink-back 200s linear infinite;
+  animation:move-twink-back 100s linear infinite;
 }
 
 body {

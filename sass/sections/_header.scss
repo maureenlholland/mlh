@@ -24,6 +24,11 @@ header {
 			height: 2px;
 			background: gold;
 		}
+		img {
+			width: 100%;
+			max-width: 20px;
+			height: auto;
+		}
 	}
 	button {
 		@include button;

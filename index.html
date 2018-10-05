@@ -10,51 +10,8 @@
 </head>
 <body id="body">
 	<div class="twinkling"></div>
-	<div id="uo-modal" class="modal">
-		<div id="uo-modal-inner" class="modal-inner">
-			<form id="uo-modal-form" action="">
-				<fieldset>  
-				  <legend>Stop Animation</legend>
-				  <div class="fb-container">
-				  	  <label for="animation-stop">
-				  	  	<input type="radio" id="animation-stop" name="animation" value="on">
-				  	  	<span class="select">Yes</span>
-				  	  </label>
-				  	  <label for="animation-play">
-				  		<input type="radio" id="animation-play" name="animation" value="off" checked>
-				  		<span class="select">No</span>
-				  	  </label>
-				  </div>
-				</fieldset> 
-				<fieldset>  
-				  <legend>Change <span class="uppercase">Uppercase</span> to Normal Case</legend>
-				  <div class="fb-container">
-				  	  <label for="uppercase-removed">
-				  		<input type="radio" id="uppercase-removed" name="uppercase" value="on">
-				  		<span class="select">Yes</span>
-				  	  </label>
-				  	  <label for="uppercase-allowed">
-				  		<input type="radio" id="uppercase-allowed" name="uppercase" value="off" checked>
-				  		<span class="select">No</span>
-				  	  </label>
-				  </div>
-				</fieldset> 
-				<fieldset>  
-				  <legend>Invert Theme Colours</legend>
-				  <div class="fb-container">
-				  	  <label for="invert-on">
-				  		<input type="radio" id="invert-on" name="invert" value="on">
-				  		<span class="select">Yes</span>
-				  	  </label>
-				  	  <label for="invert-off">
-				  	  	<input type="radio" id="invert-off" name="invert" value="off" checked>
-				  	  	<span class="select">No</span>
-				  	  </label>
-				  </div>
-				</fieldset> 
-				<button id="exit" class="exit">Exit User Options</button>
-				<button id="issue" class="issue">Report an issue</button>
-			</form>
+	<div id="modal" class="modal">
+		<div id="modal-inner" class="modal-inner">
 		</div> <!-- .modal-inner -->
 	</div> <!-- .modal -->
 	<header>
@@ -63,21 +20,6 @@
 			<button id="user-options">User Options</button>
 		</div> <!-- .wrapper -->
 	</header>
-	<form id="test" action="https://g260z3nzb7.execute-api.us-east-1.amazonaws.com/dev/static-site-mailer" method="POST">
-	  <label>
-	    Name
-	    <input type="text" name="name" required>
-	  </label>
-	  <label>
-	    Email
-	    <input type="email" name="reply_to" required>
-	  </label>
-	  <label>
-	    Message:
-	    <textarea name="message" required></textarea>
-	  </label>
-	  <button type="submit">Send Message</button>
-	</form>
 	<p id="js-form-response"></p>
 	<section class="featured">
 		<div class="wrapper--inner">
@@ -88,7 +30,7 @@
 				I break things.
 				I rebuild them.
 				I learn.</p>
-				<button>Work with Me</button>
+				<button id="message">Work with Me</button>
 			</div> <!-- .featured__content -->
 		</div> <!-- .wrapper -->
 	</section> <!-- .featured -->

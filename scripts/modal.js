@@ -195,9 +195,17 @@
       xhr.onloadend = response => {
         if (response.target.status === 200) {
           form.reset();
-          modalInner.innerHTML = `<h2>Thanks for getting in touch!</h2><p>I'll get back to you as soon as possible</p>`;
+          let copy = document.createElement('div');
+          copy.setAttribute('id', 'copy');
+          copy.setAttribute('tabIndex', '0')
+          copy.innerHTML = `<h2>Thanks for getting in touch!</h2><p>I will get back to you as soon as possible.</p>`; 
+          form.appendChild(copy);
+          const el = document.getElementById('copy');
+          el.focus();
         } else {
-          modalInner.innerHTML = `<h2>Sorry, something went wrong!</h2><p>Please try again later</p>`;
+          let copy = document.createElement('div');
+          copy.innerHTML = `<h2>Sorry, something went wrong!</h2><p>Please try again later</p>`; 
+          form.appendChild(copy);
           console.error(JSON.parse(response.target.response).message);
         }
       }

@@ -14,6 +14,27 @@ mlh.body = document.getElementById('body');
 // mlh.uppercase = document.getElementsByClassName('uppercase');
 // mlh.animation = document.getElementsByClassName('twinkling')[0];
 mlh.header = document.getElementsByTagName('header')[0];
+mlh.uoButton = document.getElementById('user-options');
+mlh.featured = document.querySelectorAll('.featured')[0];
+
+mlh.checkSize = () => {
+	if (window.innerWidth > 650) {
+		window.addEventListener('scroll', mlh.checkHeader, false);
+		mlh.header.style.position = 'fixed';
+		mlh.featured.style.paddingTop = '60px';
+		mlh.header.classList.remove('mobile');
+		mlh.header.style.paddingTop = 0;
+
+	} else {
+		window.removeEventListener('scroll', mlh.checkHeader, false);
+		mlh.header.style.position = 'absolute';
+		mlh.header.classList.add('mobile');
+		mlh.featured.style.paddingTop = '80px';
+		let headerPadding = mlh.uoButton.getBoundingClientRect().height;
+		mlh.header.style.paddingTop = headerPadding + 'px';
+	}
+
+}
 
 mlh.checkHeader = () => {
 	// Thanks to: http://blog.dynamicdrive.com/beautiful-examples-of-css-javascript-sticky-menus/
@@ -95,7 +116,9 @@ mlh.switchAnimation = (e) => {
 // 	mlh.switchAnimation(e);
 // }, false);
 // only run on desktop/tablet size
-window.addEventListener('scroll', mlh.checkHeader, false);
+window.addEventListener('load', mlh.checkSize, false);
+window.addEventListener('resize', mlh.checkSize, false);
+
 
 
 

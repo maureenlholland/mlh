@@ -16,12 +16,12 @@
 		align-self: flex-start;
 		position: relative;
 		line-height: 1;
-		&:before {
+		&:after {
 			content: '*';
 			font-size: 10px;
-			position: absolute;
-			top: 0;
-			right: -10px;
+			position: relative;
+			bottom: 0.8rem;
+			left: 7px;
 		}	
 	}
 	p {

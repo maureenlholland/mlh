@@ -56,3 +56,11 @@ header {
 	}
 	transition: all 0.3s;
 }
+
+header.mobile {
+	transition: all 0.3s;
+	button {
+		position: fixed;
+		top: 0;
+	}
+}

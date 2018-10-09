@@ -72,10 +72,12 @@
 	}
 	.item__content {
 		width: 80%;
-		margin: -75px auto 0px auto;
+		margin: -40px auto 0px auto;
 		clip-path: polygon(20% 0,80% 0,100% 20%,100% 100%,0 100%,0 20%);
 		h3 {
-			text-align: center;
+			width: 80%;
+			margin: 0 auto;
+			justify-content: center;
 		}
 		p {
 			padding-right: 20px;
@@ -83,7 +85,7 @@
 	}
 	.list__item:nth-of-type(even) .item__content {
 		h3 {
-			text-align: center;
+			flex-direction: row;
 		}
 		p {
 			padding-left: 20px;
@@ -114,6 +116,19 @@
 	.social {
 		h2 {
 			font-size: 1.4rem;
+		}
+	}
+	.featured__content {
+		width: 100%;
+	}
+	.list__item:nth-of-type(even) .item__content, 
+	.item__content {
+		width: 100%;
+		h3 {
+			flex-direction: column;
+			.skills {
+				margin: 0;
+			}
 		}
 	}
 }

@@ -123,7 +123,7 @@ button.issue {
 		margin-top: 0px;
 		padding: 3px 20px;
 	}
-	input {
+	input:not([type="submit"]) {
 		margin-top: 5px;
 	}
 	textarea {
@@ -134,7 +134,7 @@ button.issue {
 		padding-right: 0;
 		padding-bottom: 5px;
 	}
-	input,
+	input:not([type="submit"]),
 	textarea {
 		padding: 7px;
 		color: black;
@@ -145,7 +145,7 @@ button.issue {
 			outline: none;
 		}
 	}
-	button[type=submit] {
+	input[type=submit] {
 		width: 100%;
 	}
 }

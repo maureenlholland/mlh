@@ -8,6 +8,9 @@
   const modalInner = document.getElementById('modal-inner');
   const uoButton = document.getElementById('user-options');
   const contactButton = document.getElementById('message');
+  // Allow changes in copy for different forms
+  let submitButton;
+  let responseText;
 
   const uoForm = `<form id="uo-modal" class="uo-modal" action="">
         <fieldset>  
@@ -63,12 +66,35 @@
           <input type="email" name="reply_to" required>
         </label>
         <label>
-          Message:
+          Message (required):
           <textarea name="message" rows="5" required></textarea>
         </label>
-        <button type="submit">Send Message</button>
+        <div style="display: none;">
+           <input type="text" name="bots-only" id="bots-only" />
+        </div>
+        <input type="submit"></input>
         <button id="exit" class="exit">Close</button>
       </form>`;
+
+  const validateForm = () => {
+    /* code example from Jenna Molby: https://jennamolby.com/how-to-prevent-form-spam-by-using-the-honeypot-technique/*/
+
+    // The field is empty, submit the form.
+    if(!document.getElementById("bots-only").value) { 
+      return true;
+    } 
+     // the field has a value it's a spam bot
+    else {
+      return false;
+    }
+  }
+
+  const attachResponse = () => {
+    let copy = document.createElement('div');
+    copy.setAttribute('id', 'copy');
+    copy.setAttribute('tabIndex', '0')
+    return copy; 
+  }
 
   const closeModal = (e) => {
   	e.preventDefault();
@@ -91,10 +117,16 @@
         break;
       case 'message' :
         modalInner.innerHTML = contactForm;
+        submitButton = document.querySelectorAll('input[type="submit"]')[0];
+        submitButton.setAttribute('value', 'Send Message');
+        responseText = `<h2>Thanks for getting in touch!</h2><p>I will get back to you as soon as possible.</p>`
         prepareForm();
         break;
       case 'issue' :
         modalInner.innerHTML = contactForm;
+        submitButton = document.querySelectorAll('input[type="submit"]')[0];
+        submitButton.setAttribute('value', 'Report issue');
+        responseText = `<h2>Thanks for bring my attention to this issue!</h2><p>I will record the details on GitHub and create a fix as soon as possible.</p>`
         prepareForm();
         break;
     }
@@ -166,47 +198,45 @@
       openModal(e);
   }, false);
 
-  // Courtesy of Brian Holt's tutorial: https://www.smashingmagazine.com/2018/05/building-serverless-contact-form-static-website/
+  // Based on Brian Holt's tutorial: https://www.smashingmagazine.com/2018/05/building-serverless-contact-form-static-website/
   const prepareForm = () => {
     const form = document.getElementById('contact');
-    const formResponse = document.getElementById('js-form-response');
 
     form.onsubmit = e => {
       e.preventDefault();
 
-      // Prepare data to send
-      const data = {};
-      const formElements = Array.from(form);
-      formElements.map(input => (data[input.name] = input.value));
+      if (validateForm()) {
+        // Prepare data to send
+        const data = {};
+        const formElements = Array.from(form);
+        formElements.map(input => (data[input.name] = input.value));
 
-      // Log what our lambda function will receive
-      console.log(JSON.stringify(data));
+        // Construct HTTP request 
+        const xhr = new XMLHttpRequest();
+        xhr.open(form.method, form.action, true);
+        xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 
-      // Construct HTTP request 
-      const xhr = new XMLHttpRequest();
-      xhr.open(form.method, form.action, true);
-      xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
-      xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        // Send collected data as JSON
+        xhr.send(JSON.stringify(data));
 
-      // Send collected data as JSON
-      xhr.send(JSON.stringify(data));
-
-      // Callback
-      xhr.onloadend = response => {
-        if (response.target.status === 200) {
-          form.reset();
-          let copy = document.createElement('div');
-          copy.setAttribute('id', 'copy');
-          copy.setAttribute('tabIndex', '0')
-          copy.innerHTML = `<h2>Thanks for getting in touch!</h2><p>I will get back to you as soon as possible.</p>`; 
-          form.appendChild(copy);
-          const el = document.getElementById('copy');
-          el.focus();
-        } else {
-          let copy = document.createElement('div');
-          copy.innerHTML = `<h2>Sorry, something went wrong!</h2><p>Please try again later</p>`; 
-          form.appendChild(copy);
-          console.error(JSON.parse(response.target.response).message);
+        // Callback
+        xhr.onloadend = response => {
+          if (response.target.status === 200) {
+            form.reset();
+            let copy = attachResponse();
+            copy.innerHTML = responseText; 
+            form.appendChild(copy);
+            const el = document.getElementById('copy');
+            el.focus();
+          } else {
+            let copy = attachResponse();
+            copy.innerHTML = `<h2>Sorry, something went wrong!</h2><p>Please try again later</p>`; 
+            form.appendChild(copy);
+            const el = document.getElementById('copy');
+            el.focus();
+            console.error(JSON.parse(response.target.response).message);
+          }
         }
       }
     };

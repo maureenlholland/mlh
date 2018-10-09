@@ -2,19 +2,6 @@
 	box-sizing: border-box;
 }
 
-#test {
-  position: relative;
-  z-index: 15;
-  max-width: 500px;
-  margin: 0 auto;
-  input,
-  textarea,
-  label {
-    display: block;
-    width: 100%;
-  }
-}
-
 .invert {
    filter: invert(100%);
    body {
@@ -72,7 +59,8 @@ h3 {
 	text-transform: uppercase;
 }
 
-button {
+button,
+input[type="submit"] {
   @include button;
 }
 

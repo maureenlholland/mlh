@@ -21,7 +21,7 @@
                 <span class="select">Yes</span>
               </label>
               <label for="animation-play">
-              <input type="radio" id="animation-play" name="animation" value="off" checked>
+              <input type="radio" id="animation-play" name="animation" value="off">
               <span class="select">No</span>
               </label>
           </div>
@@ -34,7 +34,7 @@
               <span class="select">Yes</span>
               </label>
               <label for="uppercase-allowed">
-              <input type="radio" id="uppercase-allowed" name="uppercase" value="off" checked>
+              <input type="radio" id="uppercase-allowed" name="uppercase" value="off">
               <span class="select">No</span>
               </label>
           </div>
@@ -47,7 +47,7 @@
               <span class="select">Yes</span>
               </label>
               <label for="invert-off">
-                <input type="radio" id="invert-off" name="invert" value="off" checked>
+                <input type="radio" id="invert-off" name="invert" value="off">
                 <span class="select">No</span>
               </label>
           </div>
@@ -109,6 +109,21 @@
     switch(e.target.id) {
       case 'user-options' :
         modalInner.innerHTML = uoForm;
+        for (let value in mlh.checked) {
+          // checked[value] is true ? select input with value="on" : when false, select input with value="off"
+          mlh.checked[value] ? 
+            document.querySelectorAll(`input[name=${value}][value="on"]`)[0].setAttribute('checked', 'true') : 
+            document.querySelectorAll(`input[name=${value}][value="off"]`)[0].setAttribute('checked', 'true')
+        }
+        // set event listeners for each option
+        const inputs = modalInner.querySelectorAll('input');
+        const inputArr = Array.from(inputs);
+        inputArr.forEach(function(input){
+          input.addEventListener('change', function(e){
+            mlh.userOptionUpdate(e);
+          }, false);
+        })
+        // open issue form 
         const issueButton = document.getElementById('issue');
         issueButton.addEventListener('click', function(e) {
             closeModal(e);

@@ -1,21 +1,18 @@
 const mlh = {};
 
 mlh.root = document.documentElement;
-mlh.body = document.getElementById('body');
-// I think there's a way to re-factor this: event listener on inputs and check value of clicked input to determine what function to run - case/switch?
-// mlh.darkButton = document.getElementById('invert-off');
-// mlh.lightButton = document.getElementById('invert-on');
-// mlh.normalButton = document.getElementById('uppercase-removed');
-// mlh.uppercaseButton= document.getElementById('uppercase-allowed');
-// mlh.pauseButton = document.getElementById('animation-stop');
-// mlh.playButton = document.getElementById('animation-play');
-// mlh.allH2 = document.getElementsByTagName('h2');
-// mlh.allH3 = document.getElementsByTagName('h3'); 
-// mlh.uppercase = document.getElementsByClassName('uppercase');
-// mlh.animation = document.getElementsByClassName('twinkling')[0];
+mlh.allH2 = document.getElementsByTagName('h2');
+mlh.allH3 = document.getElementsByTagName('h3'); 
+mlh.uppercase = document.getElementsByClassName('uppercase');
+mlh.animation = document.getElementsByClassName('twinkling')[0];
 mlh.header = document.getElementsByTagName('header')[0];
 mlh.uoButton = document.getElementById('user-options');
 mlh.featured = document.querySelectorAll('.featured')[0];
+mlh.checked = {
+  animation: false,
+  uppercase: false,
+  invert: false
+};
 
 mlh.checkSize = () => {
 	if (window.innerWidth > 650) {
@@ -48,6 +45,19 @@ mlh.checkHeader = () => {
 	            stickymenu.classList.remove('sticky')
 	        }
 	    })
+}
+
+mlh.userOptionUpdate = (e) => {
+	// change checked attribute
+	mlh.checked[e.target.name] = !mlh.checked[e.target.name];
+	// send to appropriate function
+	if ( e.target.name === 'animation' ) {
+	  mlh.switchAnimation(e);
+	} else if ( e.target.name === 'uppercase'  ) {
+	  mlh.switchCasing(e);
+	} else {
+	  mlh.switchTheme(e);
+	}
 }
 
 mlh.switchTheme = (e) => {
@@ -97,24 +107,6 @@ mlh.switchAnimation = (e) => {
 	}
 }
 
-// mlh.darkButton.addEventListener('change', function(e){
-// 	mlh.switchTheme(e);
-// }, false);
-// mlh.lightButton.addEventListener('change', function(e){
-// 	mlh.switchTheme(e);
-// }, false);
-// mlh.normalButton.addEventListener('change', function(e){
-// 	mlh.switchCasing(e);
-// }, false);
-// mlh.uppercaseButton.addEventListener('change', function(e){
-// 	mlh.switchCasing(e);
-// }, false);
-// mlh.pauseButton.addEventListener('change', function(e){
-// 	mlh.switchAnimation(e);
-// }, false);
-// mlh.playButton.addEventListener('change', function(e){
-// 	mlh.switchAnimation(e);
-// }, false);
 // only run on desktop/tablet size
 window.addEventListener('load', mlh.checkSize, false);
 window.addEventListener('resize', mlh.checkSize, false);

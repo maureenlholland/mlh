@@ -42,7 +42,13 @@
 	position: relative;
 	top: 20px;
 	h3 {
+		display: flex;
+		align-items: center;
 		margin: 0;
+		i {
+			margin-right: 5px; 
+			margin-left: 5px;
+		}
 	}
 	p {
 		padding-left: 20px;
@@ -60,7 +66,8 @@
 
 .list__item:nth-of-type(even) .item__content {
 	h3 {
-		text-align: right;
+		// text-align: right;
+		flex-direction: row-reverse;
 	}
 	p {
 		padding-right: 20px;

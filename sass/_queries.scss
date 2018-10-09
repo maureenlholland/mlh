@@ -105,4 +105,15 @@
 	.grid__item:nth-of-type(10) {
 		padding-bottom: 20px;
 	}
+	.modal {
+		background: black;
+	}
+	.modal-inner {
+		padding: 0;
+	}
+	.social {
+		h2 {
+			font-size: 1.4rem;
+		}
+	}
 }

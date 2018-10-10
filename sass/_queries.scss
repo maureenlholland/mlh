@@ -36,6 +36,53 @@
 	}
 }
 
+@media all and (max-width: 800px) {
+	.list__item:nth-of-type(even) .item__content, 
+	.item__content {
+		h3 {
+			align-items: center;
+		}
+	}
+	.list__item:nth-of-type(even) .item__content {
+		h3 {
+			flex-direction: row;
+		}
+	}
+	.list__item {
+		display: block;
+		margin-bottom: 60px;
+	}
+	.item__image {
+		width: 80%;
+		margin: 0 auto;
+		img {
+			position: static;
+			transform: none;
+		}
+	}
+	.item__content {
+		width: 80%;
+		margin: -40px auto 0px auto;
+		clip-path: polygon(15% 0,85% 0,100% 20%,100% 100%,0 100%,0 20%);
+		h3 {
+			width: 80%;
+			margin: 0 auto;
+			justify-content: center;
+		}
+		p {
+			padding-right: 20px;
+		}
+	}
+	.list__item:nth-of-type(even) .item__content {
+		p {
+			padding-left: 20px;
+		}
+	}
+	.triangle {
+		display: none;
+	}
+}
+
 @media all and (max-width: 650px) {
 	header {
 		.wrapper--outer {
@@ -63,40 +110,21 @@
 	.grid__item:nth-of-type(9) {
 		padding-bottom: 20px;
 	}
-	.list__item {
-		display: block;
-		margin-bottom: 60px;
-	}
-	.item__image {
-		width: 100%;
-	}
-	.item__content {
-		width: 80%;
-		margin: -40px auto 0px auto;
-		clip-path: polygon(20% 0,80% 0,100% 20%,100% 100%,0 100%,0 20%);
-		h3 {
-			width: 80%;
-			margin: 0 auto;
-			justify-content: center;
-		}
-		p {
-			padding-right: 20px;
-		}
-	}
-	.list__item:nth-of-type(even) .item__content {
-		h3 {
-			flex-direction: row;
-		}
-		p {
-			padding-left: 20px;
-		}
-	}
-	.triangle {
-		display: none;
-	}
 	.social {
 		flex-direction: column;
 		padding-bottom: 20px;
+	}
+}
+
+@media all and (max-width: 550px) {
+	.list__item:nth-of-type(even) .item__content, 
+	.item__content {
+		h3 {
+			flex-direction: column;
+		}
+		.skills {
+			margin: 0;
+		}
 	}
 }
 
@@ -106,6 +134,10 @@
 	}
 	.grid__item:nth-of-type(10) {
 		padding-bottom: 20px;
+	}
+	.list__item:nth-of-type(even) .item__content, 
+	.item__content {
+		width: 100%;
 	}
 	.modal {
 		background: black;
@@ -120,15 +152,5 @@
 	}
 	.featured__content {
 		width: 100%;
-	}
-	.list__item:nth-of-type(even) .item__content, 
-	.item__content {
-		width: 100%;
-		h3 {
-			flex-direction: column;
-			.skills {
-				margin: 0;
-			}
-		}
 	}
 }

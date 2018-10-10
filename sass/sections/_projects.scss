@@ -34,12 +34,14 @@
 	position: relative;
 	z-index: 1;
 	padding: 20px;
-	// background: $accent;
 	img {
-		height: 100%;
-		width: 100%;
+		display: block;
+		margin: 0 auto;
+		max-width: 100%;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
 		object-fit: contain;
-		object-position: center;
 	}
 }
 

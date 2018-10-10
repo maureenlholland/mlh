@@ -11,6 +11,9 @@
   // Allow changes in copy for different forms
   let submitButton;
   let responseText;
+  // Allow different tab stops for different modals
+  let firstTabStop;
+  let lastTabStop;
 
   const uoForm = `<form id="uo-modal" class="uo-modal" action="">
         <fieldset>  
@@ -56,7 +59,7 @@
         <button id="issue" class="issue">Report an issue</button>
       </form>`;
 
-  const contactForm = `<form id="contact" class="contact" action="https://g260z3nzb7.execute-api.us-east-1.amazonaws.com/dev/static-site-mailer" method="POST">
+  const contactForm = `<form id="contact" class="contact" action="https://g260z3nzb7.execute-api.us-east-1.amazonaws.com/dev/static-site-mailer" method="POST" aria-live="polite">
         <label>
           Name (required)
           <input type="text" name="name" required>
@@ -89,11 +92,30 @@
     }
   }
 
-  const attachResponse = () => {
-    let copy = document.createElement('div');
-    copy.setAttribute('id', 'copy');
-    copy.setAttribute('tabIndex', '0')
-    return copy; 
+  const trapTabKey = (e) => {
+    // Check for TAB key press
+    if (e.keyCode === 9) {
+
+      // SHIFT + TAB
+      if (e.shiftKey) {
+        if (document.activeElement === firstTabStop) {
+          e.preventDefault();
+          lastTabStop.focus();
+        }
+
+      // TAB
+      } else {
+        if (document.activeElement === lastTabStop) {
+          e.preventDefault();
+          firstTabStop.focus();
+        }
+      }
+    }
+
+    // ESCAPE
+    if (e.keyCode === 27) {
+      closeModal(e);
+    }
   }
 
   const closeModal = (e) => {
@@ -110,7 +132,6 @@
       case 'user-options' :
         modalInner.innerHTML = uoForm;
         for (let value in mlh.checked) {
-          // checked[value] is true ? select input with value="on" : when false, select input with value="off"
           mlh.checked[value] ? 
             document.querySelectorAll(`input[name=${value}][value="on"]`)[0].setAttribute('checked', 'true') : 
             document.querySelectorAll(`input[name=${value}][value="off"]`)[0].setAttribute('checked', 'true')
@@ -134,75 +155,48 @@
         modalInner.innerHTML = contactForm;
         submitButton = document.querySelectorAll('input[type="submit"]')[0];
         submitButton.setAttribute('value', 'Send Message');
-        responseText = `<h2>Thanks for getting in touch!</h2><p>I will get back to you as soon as possible.</p>`
+        responseText = `<div role="alert" class="response"><h2>Thanks for getting in touch!</h2><p>I will get back to you as soon as possible.</p><button id="exit" class="exit">Close</button></div>`
         prepareForm();
         break;
       case 'issue' :
         modalInner.innerHTML = contactForm;
         submitButton = document.querySelectorAll('input[type="submit"]')[0];
         submitButton.setAttribute('value', 'Report issue');
-        responseText = `<h2>Thanks for bring my attention to this issue!</h2><p>I will record the details on GitHub and create a fix as soon as possible.</p>`
+        responseText = `<div role="alert" class="response"><h2>Thanks for bring my attention to this issue!</h2><p>I will record the details on GitHub and create a fix as soon as possible.</p><button id="exit" class="exit">Close</button></div>`
         prepareForm();
         break;
-    }
+      }
 
-  	// Save current focus
-  	focusedElementBeforeModal = document.activeElement;
+    	// Save current focus
+    	focusedElementBeforeModal = document.activeElement;
 
-  	// Listen for and trap the keyboard
-  	modal.addEventListener('keydown', trapTabKey);
+    	// Listen for and trap the keyboard
+    	modal.addEventListener('keydown', trapTabKey);
 
-  	// close on ESC, "Exit" button, or clicking outside modal
-    const exit = document.getElementById('exit');
-  	exit.addEventListener('click', closeModal);
+    	// close on ESC, "Exit" button, or clicking outside modal
+      const exit = document.getElementById('exit');
+    	exit.addEventListener('click', closeModal);
 
-  	// Find all focusable children
-  	let focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
-  	let focusableElements = modal.querySelectorAll(focusableElementsString);
-  	// Convert NodeList to Array
-  	focusableElements = Array.prototype.slice.call(focusableElements);
+    	// Find all focusable children
+    	let focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
+    	let focusableElements = modal.querySelectorAll(focusableElementsString);
+    	// Convert NodeList to Array
+    	focusableElements = Array.prototype.slice.call(focusableElements);
 
-  	let firstTabStop = focusableElements[0];
-  	let lastTabStop = focusableElements[focusableElements.length - 1];
+    	firstTabStop = focusableElements[0];
+    	lastTabStop = focusableElements[focusableElements.length - 1];
 
-  	modal.style.display = 'block';
-  	body.classList.add('fixed');
+    	modal.style.display = 'flex';
+    	body.classList.add('fixed');
 
-  	// This is the usual code but if inside the UO modal, I want to focus on the first active input when users enter the modal
-  	// firstTabStop.focus();
-    if (e.target.id === 'user-options') {
-      let activeInputs = modal.querySelectorAll('input:checked');
-      activeInputs[0].focus();
-    } else {
-      firstTabStop.focus();
-    }
-
-
-  	function trapTabKey(e) {
-  	  // Check for TAB key press
-  	  if (e.keyCode === 9) {
-
-  	    // SHIFT + TAB
-  	    if (e.shiftKey) {
-  	      if (document.activeElement === firstTabStop) {
-  	        e.preventDefault();
-  	        lastTabStop.focus();
-  	      }
-
-  	    // TAB
-  	    } else {
-  	      if (document.activeElement === lastTabStop) {
-  	        e.preventDefault();
-  	        firstTabStop.focus();
-  	      }
-  	    }
-  	  }
-
-  	  // ESCAPE
-  	  if (e.keyCode === 27) {
-  	    closeModal(e);
-  	  }
-  	}
+    	// This is the usual code but if inside the UO modal, I want to focus on the first active input when users enter the modal
+    	// firstTabStop.focus();
+      if (e.target.id === 'user-options') {
+        let activeInputs = modal.querySelectorAll('input:checked');
+        activeInputs[0].focus();
+      } else {
+        firstTabStop.focus();
+      }
   }
 
   uoButton.addEventListener('click', function(e) {
@@ -239,18 +233,21 @@
         xhr.onloadend = response => {
           if (response.target.status === 200) {
             form.reset();
-            let copy = attachResponse();
-            copy.innerHTML = responseText; 
-            form.appendChild(copy);
-            const el = document.getElementById('copy');
-            el.focus();
+            modalInner.innerHTML = responseText;
+            let exit = document.getElementById('exit');
+            console.log(exit);
+            exit.addEventListener('click', closeModal);
+            exit.focus();
+            firstTabStop = exit;
+            lastTabStop = exit;
+            exit.addEventListener('keydown', trapTabKey(e), false);
           } else {
-            let copy = attachResponse();
-            copy.innerHTML = `<h2>Sorry, something went wrong!</h2><p>Please try again later</p>`; 
-            form.appendChild(copy);
-            const el = document.getElementById('copy');
-            el.focus();
+            let copy = document.createElement('div');
+            copy.innerHTML = `<div><h2>Sorry, something went wrong!</h2><p>Please try again later</p><button id="exit" class="exit">Close</button></div>`; 
+            form.innerHTML = copy;
             console.error(JSON.parse(response.target.response).message);
+            let exit = form.getElementById('exit');
+            exit.addEventListener('click', closeModal);
           }
         }
       }

@@ -59,7 +59,7 @@
         <button id="issue" class="issue">Report an issue</button>
       </form>`;
 
-  const contactForm = `<form id="contact" class="contact" action="https://g260z3nzb7.execute-api.us-east-1.amazonaws.com/dev/static-site-mailer" method="POST" aria-live="polite">
+  const contactForm = `<form id="contact" class="contact" action="https://g260z3nzb7.execute-api.us-east-1.amazonaws.com/dev/static-site-mailer" method="POST">
         <label>
           Name (required)
           <input type="text" name="name" required>
@@ -235,7 +235,6 @@
             form.reset();
             modalInner.innerHTML = responseText;
             let exit = document.getElementById('exit');
-            console.log(exit);
             exit.addEventListener('click', closeModal);
             exit.focus();
             firstTabStop = exit;

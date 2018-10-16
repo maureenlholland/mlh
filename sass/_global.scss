@@ -38,7 +38,7 @@
 .twinkling {
   background:transparent url('assets/twinkling.png') repeat top center;
   z-index:1;
-  animation:move-twink-back 150s linear infinite;
+  animation: twinkle 500s linear infinite;
 }
 
 body {
@@ -90,18 +90,13 @@ fieldset {
 	display: flex;
 }
 
-@keyframes move-twink-back {
-    0% {
-    	background-position:0 0;
+/* All CSS twinkling stars effect thanks to the following tutorial: https://www.script-tutorials.com/night-sky-with-twinkling-stars/ */
+@keyframes twinkle {
+    from {
+      background-position:0 0;
     }
-    50% {
-    	background-position: 1000px 500px;
-    }
-    80% {
-    	background-position: 0px 0;
-    }
-    100% {
-    	background-position: -500px -1000px;
+    to {
+      background-position:10000px 0;
     }
 }
 

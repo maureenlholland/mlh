@@ -3,6 +3,9 @@
   // // Will hold previously focused element
   let focusedElementBeforeModal;
 
+  // check if Chrome is used (thanks to SO: https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser/9851769)
+  const isChrome = !!window.chrome && !!window.chrome.webstore;
+
   const body = document.getElementById('body');
   const modal = document.getElementById('modal');
   const modalInner = document.getElementById('modal-inner');
@@ -42,19 +45,22 @@
               </label>
           </div>
         </fieldset> 
-        <fieldset>  
-          <legend>Invert Theme Colours</legend>
-          <div class="fb-container">
-              <label for="invert-on">
-              <input type="radio" id="invert-on" name="invert" value="on">
-              <span class="select">Yes</span>
-              </label>
-              <label for="invert-off">
-                <input type="radio" id="invert-off" name="invert" value="off">
-                <span class="select">No</span>
-              </label>
-          </div>
-        </fieldset> 
+        ${ isChrome ? 
+          `<fieldset>  
+            <legend>Invert Theme Colours</legend>
+            <div class="fb-container">
+                <label for="invert-on">
+                <input type="radio" id="invert-on" name="invert" value="on">
+                <span class="select">Yes</span>
+                </label>
+                <label for="invert-off">
+                  <input type="radio" id="invert-off" name="invert" value="off">
+                  <span class="select">No</span>
+                </label>
+            </div>
+          </fieldset>`
+          : '<input style="display:none" type="radio" id="invert-off" name="invert" value="off">'
+        } 
         <button id="exit" class="exit">Exit User Options</button>
         <button id="issue" class="issue">Report an issue</button>
       </form>`;
@@ -131,6 +137,7 @@
     switch(e.target.id) {
       case 'user-options' :
         modalInner.innerHTML = uoForm;
+        // set checked selectors 
         for (let value in mlh.checked) {
           mlh.checked[value] ? 
             document.querySelectorAll(`input[name=${value}][value="on"]`)[0].setAttribute('checked', 'true') : 

@@ -14,16 +14,46 @@ mlh.checked = {
   invert: false
 };
 
+/* Debounce function from Underscore.js (provides option of leading or trailing) */
+mlh.debounce = (func, wait, immediate) => {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
+// Throttle function from Jhey Tompkins: https://codeburst.io/throttling-and-debouncing-in-javascript-b01cad5c8edf
+mlh.throttle = (func, limit) => {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
 mlh.checkSize = () => {
 	if (window.innerWidth > 650) {
-		window.addEventListener('scroll', mlh.checkHeader, false);
+		window.addEventListener('scroll', mlh.debounce(mlh.checkHeader, 100), false);
 		mlh.header.style.position = 'fixed';
 		mlh.featured.style.paddingTop = '60px';
 		mlh.header.classList.remove('mobile');
 		mlh.header.style.paddingTop = 0;
 
 	} else {
-		window.removeEventListener('scroll', mlh.checkHeader, false);
+		window.removeEventListener('scroll', mlh.debounce(mlh.checkHeader, 100), false);
 		mlh.header.style.position = 'absolute';
 		mlh.header.classList.add('mobile');
 		mlh.featured.style.paddingTop = '80px';
@@ -33,15 +63,35 @@ mlh.checkSize = () => {
 
 }
 
+mlh.debounceCheckSize = mlh.debounce(function(){
+	if (window.innerWidth > 650) {
+		window.addEventListener('scroll', mlh.debounce(mlh.checkHeader, 100), false);
+		mlh.header.style.position = 'fixed';
+		mlh.featured.style.paddingTop = '60px';
+		mlh.header.classList.remove('mobile');
+		mlh.header.style.paddingTop = 0;
+
+	} else {
+		window.removeEventListener('scroll', mlh.debounce(mlh.checkHeader, 100), false);
+		mlh.header.style.position = 'absolute';
+		mlh.header.classList.add('mobile');
+		mlh.featured.style.paddingTop = '80px';
+		let headerPadding = mlh.uoButton.getBoundingClientRect().height;
+		mlh.header.style.paddingTop = headerPadding + 'px';
+	}
+}, 100);
+
 mlh.checkHeader = () => {
 	// Thanks to: http://blog.dynamicdrive.com/beautiful-examples-of-css-javascript-sticky-menus/
 	const stickymenu = mlh.header;
 	let stickymenuoffset = mlh.header.offsetTop;
 	requestAnimationFrame(function(){
 	        if (window.pageYOffset > stickymenuoffset){
+	        	console.log('sticky');
 	            stickymenu.classList.add('sticky');
 	        }
 	        else{
+	        	console.log('not sticky');
 	            stickymenu.classList.remove('sticky')
 	        }
 	    })
@@ -109,7 +159,7 @@ mlh.switchAnimation = (e) => {
 
 // only run on desktop/tablet size
 window.addEventListener('load', mlh.checkSize, false);
-window.addEventListener('resize', mlh.checkSize, false);
+window.addEventListener('resize', mlh.debounceCheckSize, false);
 
 
 

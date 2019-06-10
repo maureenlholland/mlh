@@ -19,145 +19,162 @@
 	<title>MLH</title>
 	<!-- FAVICON -->
 	<link rel="icon" type="image/png" href="assets/typewriter-favicon.png" />
-	<!-- FONT AWESOME -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	<!-- GOOGLE FONTS -->
-	<link href="https://fonts.googleapis.com/css?family=Inconsolata:700|Source+Sans+Pro" rel="stylesheet">
-	<!-- STYLES -->
-	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto:700&display=swap" rel="stylesheet">
+    <style>
+        body, h1, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --color-accent: #20afff;
+            --font-heading: 'Roboto', sans-serif;
+            --font-main: 'Raleway', sans-serif;
+            font-size: 18px;
+        }
+        body {
+            background: var(--color-accent);
+            font-family: var(--font-main);
+        }
+        #particles-js {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-image: url("");
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: 50% 50%;
+        }
+        a {
+            padding: 5px;
+            text-decoration: none;
+            border: 1px solid var(--color-accent);
+            color: white;
+            background: var(--color-accent);
+            transition: 0.3s color, 0.3s background;
+        }
+        a:hover,
+        a:focus {
+            color: var(--color-accent);
+            background: white;
+        }
+        .card {
+            position: absolute;
+            z-index: 10;
+            background: white;
+            padding: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-wrap: wrap;
+            height: 250px;
+            max-width: 500px;
+        }
+        h1, h2 {
+            font-family: var(--font-heading);
+        }
+        h1 {
+            color: var(--color-accent);
+            font-size: 2rem;
+        }
+        h2 {
+            font-size: 1rem;
+        }
+        header, section {
+            width: 100%;
+        }
+        section {
+            align-self: flex-end;
+        }
+    </style>
 </head>
 <body id="body">
-	<div class="twinkling"></div>
-	<div id="modal" class="modal">
-		<div id="modal-inner" class="modal-inner">
-		</div> <!-- .modal-inner -->
-	</div> <!-- .modal -->
-	<header>
-		<div class="wrapper--outer">
-			<h1>Maureen L. Holland</h1>
-			<button id="user-options">User Options</button>
-		</div> <!-- .wrapper -->
-	</header>
-	<section class="featured">
-		<div class="wrapper--inner">
-			<div class="featured__content">
-				<h2>I write for Computers and Humans and Money</h2>
-				<p>I'm a full-stack developer based in Montreal, Canada.</p>
-				<p>I strive to write clean, modular, and accessible code every day.</p>
-				<p>I break things.</p>
-				<p>I rebuild them.</p>
-				<p>I learn.</p>
-				<button id="message">Work with Me</button>
-			</div> <!-- .featured__content -->
-		</div> <!-- .wrapper -->
-	</section> <!-- .featured -->
-	<section class="skills">
-		<div class="wrapper--outer">
-			<h2>Skills</h2>
-			<ul class="skills__grid">
-				<li class="grid__item">
-					<i class="fab fa-html5"></i>
-					<h3>HTML5</h3>
-				</li>
-				<li class="grid__item">
-					<i class="fab fa-css3-alt"></i>
-					<h3>CSS3</h3>
-				</li>
-				<li class="grid__item">
-					<i class="fab fa-sass"></i>
-					<h3>Sass</h3>
-				</li>
-				<li class="grid__item">
-					<i class="fab fa-gulp"></i>
-					<h3>Gulp</h3>
-				</li>
-				<li class="grid__item">
-					<i class="fab fa-github"></i>
-					<h3>Github</h3>
-				</li>
-				<li class="grid__item">
-					<i class="fab fa-git"></i>
-					<h3>Git</h3>
-				</li>
-				<li class="grid__item">
-					<i class="fab fa-php"></i>
-					<h3>PHP</h3>
-				</li>
-				<li class="grid__item">
-					<i class="fab fa-wordpress"></i>
-					<h3>WordPress</h3>
-				</li>
-				<li class="grid__item">
-					<i class="fab fa-js"></i>
-					<h3>JavaScript</h3>
-				</li>
-				<li class="grid__item">
-					<i class="fab fa-react"></i>
-					<h3>React.js</h3>
-				</li>
-				<li class="grid__item">
-					<i class="fab fa-node"></i>
-					<h3>Node.js</h3>
-				</li>
-				<li class="grid__item">
-					<i class="fab fa-vuejs"></i>
-					<h3>Vue.js</h3>
-				</li>
-			</ul> <!-- .skills__grid -->
-		</div> <!-- .wrapper -->
-	</section> <!-- .skills -->
-	<section class="projects">
-		<div class="wrapper--inner">
-			<h2>Side Projects</h2>
-			<ul class="projects__list">
-				<li class="list__item">
-					<div class="item__image">
-						<img src="assets/binge-buddy-res-compressor.png" alt="Desktop, tablet, and mobile screenshots of the Binge Buddy App">
-					</div>
-					<div class="item__content">
-						<h3>Binge Buddy 
-							<div class="skills">
-								<i class="fab fa-html5"></i>
-								<i class="fab fa-css3-alt"></i>
-								<i class="fab fa-js"></i>
-							</div>
-						</h3>
-						<p>Recommends a TV show and alcohol pairing based on user preferences. Built with The Movie Database’s TV API and the LCBO API. Fully responsive.</p>
-						<a href="http://maureenlholland.com/binge-buddy/">View Live</a>
-					</div>
-				</li>
-				<li class="list__item">
-					<div class="item__image">
-						<img src="assets/to-do-app.png" alt="Desktop, tablet, and mobile screenshots of To-Do App">
-					</div>
-					<div class="item__content">
-						<h3>To-Do App
-							<div class="skills">
-								<i class="fab fa-js"></i>
-								<i class="fab fa-react"></i>
-								<i class="fab fa-github"></i>
-							</div>
-						</h3>
-						<p>Super simple but weirdly addictive to-do list. Add and delete as many items as you like! Built with React and hosted on Heroku.</p>
-						<a href="https://to-do-app-2018.herokuapp.com/">View Live</a>
-					</div>
-				</li>  
-			</ul> <!-- .projects__list -->
-		</div> <!-- .wrapper -->
-	</section> <!-- .projects -->
-	<footer>
-		<div class="wrapper--outer">
-			<div class="social">
-				<h2>Find me online elsewhere: </h2>
-				<ul>
-					<li><a href="https://www.linkedin.com/in/maureen-l-holland-89b55723/">LinkedIn</a></li>
-					<li><a href="https://github.com/maureenlholland">GitHub</a></li>
-				</ul>
-			</div> <!-- .social -->
-			<p class="copyright">&copy; Maureen L. Holland 2018</p>
-		</div> <!-- .wrapper -->
-	</footer>
+    <div id="particles-js"></div>
+		<div class="card">
+            <header>
+    			<h1>Maureen L. Holland</h1>
+                <h2>Writer/Developer</h2>
+            </header>
+            <section>
+                <p>New site coming soon!</p>
+                <p>In the meantime, you can find me on: <a href="https://ca.linkedin.com/in/maureen-holland-89b55723">LinkedIn</a> or <a href="https://github.com/maureenlholland">GitHub</a></p>
+            </section>
+		</div> <!-- .card -->
 	<!-- SCRIPTS -->
-	<script src="public/scripts/main.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+	<script>
+        particlesJS("particles-js", {
+          "particles": {
+            "number": {
+              "value": 150,
+              "density": {
+                "enable": true,
+                "value_area": 800
+              }
+            },
+            "color": {
+              "value": "#ffffff"
+            },
+            "shape": {
+              "type": "circle",
+              "stroke": {
+                "width": 0,
+                "color": "#000000"
+              },
+              "polygon": {
+                "nb_sides": 5
+              },
+              "image": {
+                "src": "img/github.svg",
+                "width": 100,
+                "height": 100
+              }
+            },
+            "opacity": {
+              "value": 0.5,
+              "random": false,
+              "anim": {
+                "enable": false,
+                "speed": 0.2,
+                "opacity_min": 0.1,
+                "sync": false
+              }
+            },
+            "size": {
+              "value": 3,
+              "random": true,
+              "anim": {
+                "enable": false,
+                "speed": 20,
+                "size_min": 0.1,
+                "sync": false
+              }
+            },
+            "line_linked": {
+              "enable": true,
+              "distance": 150,
+              "color": "#ffffff",
+              "opacity": 0.4,
+              "width": 1
+            },
+            "move": {
+              "enable": true,
+              "speed": 3,
+              "direction": "none",
+              "random": false,
+              "straight": false,
+              "out_mode": "out",
+              "bounce": false,
+              "attract": {
+                "enable": false,
+                "rotateX": 600,
+                "rotateY": 1200
+              }
+            }
+          },
+          "retina_detect": true
+        });  
+    </script>
 </body>
 </html>

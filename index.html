@@ -20,7 +20,7 @@
 	<!-- FAVICON -->
 	<link rel="icon" type="image/png" href="assets/typewriter-favicon.png" />
 	<!-- GOOGLE FONTS -->
-	<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto:700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
     <style>
         body, h1, h2, p {
             margin: 0;
@@ -28,13 +28,13 @@
         }
         :root {
             --color-accent: #20afff;
-            --font-heading: 'Roboto', sans-serif;
-            --font-main: 'Raleway', sans-serif;
+            --font-main: 'Roboto', sans-serif;
             font-size: 18px;
         }
         body {
             background: var(--color-accent);
             font-family: var(--font-main);
+            line-height: 1.7;
         }
         #particles-js {
           position: absolute;
@@ -46,17 +46,29 @@
           background-position: 50% 50%;
         }
         a {
-            padding: 5px;
+            color: black;
             text-decoration: none;
-            border: 1px solid var(--color-accent);
-            color: white;
-            background: var(--color-accent);
             transition: 0.3s color, 0.3s background;
+            position: relative;
+            z-index: 1;
         }
-        a:hover,
-        a:focus {
-            color: var(--color-accent);
-            background: white;
+        a:after{
+            content: "";
+            position: absolute;
+            z-index: 0;
+            bottom: -2px;
+            left: -2px;
+            right: -5px;
+            height: 0.3rem;
+            display: block;
+            background: var(--color-accent);
+            opacity: 0.3;
+            transform-origin: bottom;
+            transition: transform 0.3s;
+        }
+        a:hover:after,
+        a:focus:after {
+            transform: scaleY(4);
         }
         .card {
             position: absolute;
@@ -72,7 +84,7 @@
             max-width: 500px;
         }
         h1, h2 {
-            font-family: var(--font-heading);
+            font-weight: bold;
         }
         h1 {
             color: var(--color-accent);
@@ -94,11 +106,13 @@
 		<div class="card">
             <header>
     			<h1>Maureen L. Holland</h1>
-                <h2>Writer/Developer</h2>
             </header>
             <section>
+                <h2>Writer / Web Developer</h2>
+                <p>Github: <a href="https://github.com/maureenlholland">https://github.com/maureenlholland</a></p>
+                <p>LinkedIn: <a href="https://linkedin.com/in/maureenlholland">https://linkedin.com/in/maureenlholland</a></p>
+                <p></p>
                 <p>New site coming soon!</p>
-                <p>In the meantime, you can find me on: <a href="https://ca.linkedin.com/in/maureen-holland-89b55723">LinkedIn</a> or <a href="https://github.com/maureenlholland">GitHub</a></p>
             </section>
 		</div> <!-- .card -->
 	<!-- SCRIPTS -->

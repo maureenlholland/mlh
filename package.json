@@ -1,0 +1,30 @@
+{
+  "name": "mlh",
+  "version": "1.0.0",
+  "description": "## :construction: Work in progress",
+  "main": "custom.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maureenlholland/mlh.git"
+  },
+  "author": "mlh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maureenlholland/mlh/issues"
+  },
+  "homepage": "https://github.com/maureenlholland/mlh#readme",
+  "devDependencies": {
+    "autoprefixer": "^9.6.1",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-imagemin": "^6.1.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-uglify": "^3.0.2"
+  },
+  "browserslist": [
+    "last 1 version"
+  ]
+}
